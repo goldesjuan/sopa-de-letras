@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "name": "sopa-de-letras",
+  "version": "1.0.0",
+  "description": "API endpoint for sopa de letras",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node ./src/index.js",
+    "lint": "eslint"
+  },
+  "author": "Juan Goldes",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^7.3.0",
+    "mocha": "^8.0.1"
+  }
+}
