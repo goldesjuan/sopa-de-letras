@@ -1,5 +1,5 @@
-import BoardParser from '../models/BoardParser.js'
-import SopaDeLetrasSolver from '../solvers/SopaDeLetrasSolver.js'
+import BoardParser from '../services/BoardParser.js'
+import SopaDeLetrasSolver from '../services/SopaDeLetrasSolver.js'
 import { HttpError, httpStatusCodes } from '../errors/HttpError.js'
 
 class SopaDeLetrasApi {

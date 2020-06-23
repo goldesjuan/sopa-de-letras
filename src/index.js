@@ -1,6 +1,5 @@
 import express from 'express'
-import SopaDeLetras from './solvers/SopaDeLetrasSolver.js'
-import SopaDeLetrasApi from './apis/SopaDeLtrasApi.js'
+import SopaDeLetrasApi from './apis/SopaDeLetrasApi.js'
 
 const app = express()
 app.use(express.json())

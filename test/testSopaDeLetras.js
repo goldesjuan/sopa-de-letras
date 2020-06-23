@@ -1,4 +1,4 @@
-import SopaDeLetrasSolver from '../src/solvers/SopaDeLetrasSolver.js'
+import SopaDeLetrasSolver from '../src/services/SopaDeLetrasSolver.js'
 import chai from 'chai'
 const expect = chai.expect
 

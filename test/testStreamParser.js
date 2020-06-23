@@ -1,5 +1,5 @@
-import BoardParser from '../src/models/BoardParser.js'
-import SopaDeLetrasSolver from '../src/solvers/SopaDeLetrasSolver.js'
+import BoardParser from '../src/services/BoardParser.js'
+import SopaDeLetrasSolver from '../src/services/SopaDeLetrasSolver.js'
 import chai from 'chai'
 const expect = chai.expect
 
