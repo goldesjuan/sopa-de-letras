@@ -2,7 +2,13 @@ import express from 'express'
 import SopaDeLetrasApi from './apis/SopaDeLetrasApi.js'
 
 const app = express()
+
+app.set('view engine', 'jade');
 app.use(express.json())
+
+app.get('/sopadeletras', function(req, res) {
+  res.render('index', { title: 'Sopa de letras' });
+});
 
 app.post(`/sopadeletras/solucion`, async (req, res) => {
   try {
