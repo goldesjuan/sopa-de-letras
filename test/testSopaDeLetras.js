@@ -1,26 +1,26 @@
-import SopaDeLetras from '../src/SopaDeLetras.js'
+import SopaDeLetrasSolver from '../src/solvers/SopaDeLetrasSolver.js'
 import chai from 'chai'
 const expect = chai.expect
 
 describe(`Single letter horizontal search`, () => {
   it(`should return 0 when passing 'a' and asking for 'x'`, () => {
     const contenido = [[`a`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`x`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`x`)
     expect(count).to.equal(0)
   })
 
   it(`should return 1 when passing 'a' and asking for 'a'`, () => {
     const contenido = [[`a`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`a`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`a`)
     expect(count).to.equal(1)
   })
 
   it(`should return 2 when passing 'axa' and asking for 'a'`, () => {
     const contenido = [[`a`, `x`, `a`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`a`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`a`)
     expect(count).to.equal(2)
   })
 })
@@ -28,22 +28,22 @@ describe(`Single letter horizontal search`, () => {
 describe(`Horizontal search`, () => {
   it(`should return 2 when passig 'hiahi' and asking for 'hi'`, () => {
     const contenido = [[`h`, `i`, `a`, `h`, `i`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`hi`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`hi`)
     expect(count).to.equal(2)
   })
 
   it(`should return 2 when passig 'gatogatoga' and asking for 'gatoga'`, () => {
     const contenido = [[`g`, `a`, `t`, `o`, `g`, `a`, `t`, `o`, `g`, `a`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`gatoga`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`gatoga`)
     expect(count).to.equal(2)
   })
 
   it(`should return 2 when passig 'oieio' and asking for 'oie'`, () => {
     const contenido = [[`o`, `i`, `e`, `i`, `o`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`oie`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`oie`)
     expect(count).to.equal(2)
   })
 })
@@ -55,8 +55,8 @@ describe(`Horizontal + vertical search`, () => {
       hi
       ia`, () => {
     const contenido = [[`h`, `i`], [`i`, `a`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`hi`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`hi`)
     expect(count).to.equal(2)
   })
 
@@ -67,8 +67,8 @@ describe(`Horizontal + vertical search`, () => {
       ia
       hi`, () => {
     const contenido = [[`h`, `i`], [`i`, `a`], [`h`, `i`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`hi`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`hi`)
     expect(count).to.equal(4)
   })
 })
@@ -81,8 +81,8 @@ describe(`Diagonal right-down`, () => {
       iix
       exe`, () => {
     const contenido = [[`o`, `i`, `e`], [`i`, `i`, `x`], [`e`, `x`, `e`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`oie`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`oie`)
     expect(count).to.equal(3)
   })
 })
@@ -95,8 +95,8 @@ describe(`Diagonal left-up`, () => {
       iix
       oxo`, () => {
     const contenido = [[`e`, `i`, `x`], [`i`, `i`, `x`], [`o`, `x`, `o`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`oie`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`oie`)
     expect(count).to.equal(2)
   })
 })
@@ -116,8 +116,8 @@ describe(`All directions`, () => {
       [`e`, `i`, `o`, `i`, `e`],
       [`a`, `i`, `i`, `i`, `a`],
       [`e`, `a`, `e`, `a`, `e`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`oie`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`oie`)
     expect(count).to.equal(8)
   })
 })
@@ -137,8 +137,8 @@ describe(`Case insensitive search`, () => {
       [`e`, `i`, `O`, `i`, `e`],
       [`a`, `i`, `i`, `i`, `a`],
       [`e`, `a`, `e`, `a`, `e`]]
-    const sdl = new SopaDeLetras(contenido)
-    const count = sdl.count(`oIE`)
+    const solver = new SopaDeLetrasSolver(contenido)
+    const count = solver.count(`oIE`)
     expect(count).to.equal(8)
   })
 })

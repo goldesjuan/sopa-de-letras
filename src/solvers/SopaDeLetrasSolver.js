@@ -9,12 +9,11 @@ const ORIENTATIONS = new Map([
   ['leftUp', [-1, -1]]
 ])
 
-class SopaDeLetras {
-  constructor(board) {
-    this.board = board
-  }
+class SopaDeLetrasSolver {
 
-  count = (word) => {
+  count = (board, word) => {
+    this.board = board
+
     if (word.length === 1) {
       return this.#countSingleLetter(word)
     } else {
@@ -83,4 +82,4 @@ class SopaDeLetras {
   }
 }
 
-export default SopaDeLetras
+export default SopaDeLetrasSolver
