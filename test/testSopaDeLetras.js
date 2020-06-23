@@ -2,8 +2,7 @@ import SopaDeLetras from '../src/SopaDeLetras.js'
 import chai from 'chai'
 const expect = chai.expect
 
-
-describe(`Horizontal search`, () => {
+describe(`Single letter horizontal search`, () => {
   it(`should return 0 when passing 'a' and asking for 'x'`, () => {
     const contenido = [[`a`]]
     const sdl = new SopaDeLetras(contenido)
@@ -24,7 +23,9 @@ describe(`Horizontal search`, () => {
     const count = sdl.count(`a`)
     expect(count).to.equal(2)
   })
+})
 
+describe(`Horizontal search`, () => {
   it(`should return 2 when passig 'hiahi' and asking for 'hi'`, () => {
     const contenido = [[`h`, `i`, `a`, `h`, `i`]]
     const sdl = new SopaDeLetras(contenido)
@@ -48,14 +49,23 @@ describe(`Horizontal search`, () => {
 })
 
 describe(`Horizontal + vertical search`, () => {
-  it(`should return 2 when passing [[h, i],[i, a]]`, () => {
+  it(`should return 2 when passing:
+    'hi'
+      to:
+      hi
+      ia`, () => {
     const contenido = [[`h`, `i`], [`i`, `a`]]
     const sdl = new SopaDeLetras(contenido)
     const count = sdl.count(`hi`)
     expect(count).to.equal(2)
   })
 
-  it(`should return 4 when passing [[h, i],[i, a], [h, i]]`, () => {
+  it(`should return 4 when passing:
+    'hi'
+      to:
+      hi
+      ia
+      hi`, () => {
     const contenido = [[`h`, `i`], [`i`, `a`], [`h`, `i`]]
     const sdl = new SopaDeLetras(contenido)
     const count = sdl.count(`hi`)
@@ -67,9 +77,9 @@ describe(`Diagonal right-down`, () => {
   it(`should return 3 when passing:
     'oie'
       to:
-    oie
-    iix
-    exe`, () => {
+      oie
+      iix
+      exe`, () => {
     const contenido = [[`o`, `i`, `e`], [`i`, `i`, `x`], [`e`, `x`, `e`]]
     const sdl = new SopaDeLetras(contenido)
     const count = sdl.count(`oie`)
@@ -81,9 +91,9 @@ describe(`Diagonal left-up`, () => {
   it(`should return 3 when passing:
     'oie'
       to:
-    eix
-    iix
-    oxo`, () => {
+      eix
+      iix
+      oxo`, () => {
     const contenido = [[`e`, `i`, `x`], [`i`, `i`, `x`], [`o`, `x`, `o`]]
     const sdl = new SopaDeLetras(contenido)
     const count = sdl.count(`oie`)
@@ -91,7 +101,7 @@ describe(`Diagonal left-up`, () => {
   })
 })
 
-describe(`Diagonal up-right & down-left`, () => {
+describe(`All directions`, () => {
   it(`should return 8 when passing:
     'oie'
       to:
