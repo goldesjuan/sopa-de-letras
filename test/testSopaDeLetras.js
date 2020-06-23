@@ -121,3 +121,24 @@ describe(`All directions`, () => {
     expect(count).to.equal(8)
   })
 })
+
+describe(`Case insensitive search`, () => {
+  it(`should return 8 when passing:
+    'oIE'
+      to:
+      eaeae
+      aiiia
+      eiOie
+      aiiia
+      eaeae`, () => {
+    const contenido = [
+      [`e`, `a`, `e`, `a`, `e`],
+      [`a`, `i`, `i`, `i`, `a`],
+      [`e`, `i`, `O`, `i`, `e`],
+      [`a`, `i`, `i`, `i`, `a`],
+      [`e`, `a`, `e`, `a`, `e`]]
+    const sdl = new SopaDeLetras(contenido)
+    const count = sdl.count(`oIE`)
+    expect(count).to.equal(8)
+  })
+})

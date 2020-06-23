@@ -26,7 +26,7 @@ class SopaDeLetras {
     let count = 0
     for (const row of this.board) {
       for (const cell of row) {
-        if (cell === letter) {
+        if (this.#areEqual(cell, letter)) {
           count++
         }
       }
@@ -39,7 +39,7 @@ class SopaDeLetras {
     const startingLetter = word[0]
     for (const [rowIndex, row] of this.board.entries()) {
       for (const [colIndex, letter] of row.entries()) {
-        if (letter === startingLetter) {
+        if (this.#areEqual(letter, startingLetter)) {
           count += this.#countInEveryDirection(rowIndex, colIndex, word)
         }
       }
@@ -51,11 +51,14 @@ class SopaDeLetras {
     let count = 0
     for (const ori of ORIENTATIONS.keys()) {
       const substr = this.#getSubstring(rowIndex, colIndex, ORIENTATIONS.get(ori), word.length)
-      count += substr === word ? 1 : 0
+      count += this.#areEqual(substr, word) ? 1 : 0
     }
     return count
   }
 
+  #areEqual = (string1, string2) => {
+    return string1.toLowerCase() === string2.toLowerCase()
+  }
 
   #getSubstring = (r, c, [rowIncrement, colIncrement], length) => {
     const aux = []
