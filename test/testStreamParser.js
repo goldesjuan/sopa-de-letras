@@ -22,11 +22,12 @@ describe(`stream Parser`, () => {
     const results = []
 
     const parser = new BoardParser()
+    const solver = new SopaDeLetrasSolver()
+
     for (const chunk of chunks) {
       const splitChunk = chunk.split('\n')
       const board = parser.parse(splitChunk)
-      const solver = new SopaDeLetrasSolver(board)
-      const count = solver.count(`oIE`)
+      const count = solver.count(board, `oIE`)
       results.push(count)
     }
     expect(results[0]).to.equal(3)
