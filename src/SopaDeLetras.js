@@ -1,12 +1,12 @@
 const ORIENTATIONS = new Map([
-  ['up', [-1,0]],
-  ['down', [1,0]],
-  ['left', [0,-1]],
-  ['right', [0,1]],
-  ['rightDown', [1,1]],
-  ['leftDown', [1,-1]],
-  ['rightUp', [-1,1]],
-  ['leftUp', [-1,-1]]
+  ['up', [-1, 0]],
+  ['down', [1, 0]],
+  ['left', [0, -1]],
+  ['right', [0, 1]],
+  ['rightDown', [1, 1]],
+  ['leftDown', [1, -1]],
+  ['rightUp', [-1, 1]],
+  ['leftUp', [-1, -1]]
 ])
 
 class SopaDeLetras {
@@ -14,47 +14,69 @@ class SopaDeLetras {
     this.board = board
   }
 
-  count(word) {
+  count = (word) => {
+    if (word.length === 1) {
+      return this.#countSingleLetter(word)
+    } else {
+      return this.#countWord(word)
+    }
+  }
+
+  #countSingleLetter = (letter) => {
     let count = 0
-    const startingLetter = word[0]
-    const current = [0, 0]
-    for (const [rowIndex, row] of this.board.entries()) {
-      for (const [colIndex, letter] of row.entries()) {
-        if (letter === startingLetter) {
-          if (word.length === 1) {
-            count++
-          } else {
-            for (const ori of ORIENTATIONS.keys()) {
-              const found = this.getSubstring(rowIndex, colIndex, ORIENTATIONS.get(ori), word.length)
-              count += found === word ? 1 : 0
-            }
-          }
+    for (const row of this.board) {
+      for (const cell of row) {
+        if (cell === letter) {
+          count++
         }
       }
     }
     return count
   }
 
-  getSubstring(r, c, [rInc, cInc], length) {
+  #countWord = (word) => {
+    let count = 0
+    const startingLetter = word[0]
+    for (const [rowIndex, row] of this.board.entries()) {
+      for (const [colIndex, letter] of row.entries()) {
+        if (letter === startingLetter) {
+          count += this.#countInEveryDirection(rowIndex, colIndex, word)
+        }
+      }
+    }
+    return count
+  }
+
+  #countInEveryDirection = (rowIndex, colIndex, word) => {
+    let count = 0
+    for (const ori of ORIENTATIONS.keys()) {
+      const substr = this.#getSubstring(rowIndex, colIndex, ORIENTATIONS.get(ori), word.length)
+      count += substr === word ? 1 : 0
+    }
+    return count
+  }
+
+
+  #getSubstring = (r, c, [rowIncrement, colIncrement], length) => {
     const aux = []
-    let ri = r
-    let ci = c
+    let rowIndex = r
+    let colIndex = c
     while (aux.length < length &&
-      this.withinVerticalBounds(ri) &&
-      this.withinHorizontalBounds(ci)) {
-      aux.push(this.board[ri][ci])
-      ci += cInc
-      ri += rInc
+      this.#withinVerticalBounds(rowIndex) &&
+      this.#withinHorizontalBounds(colIndex)) {
+      aux.push(this.board[rowIndex][colIndex])
+      colIndex += colIncrement
+      rowIndex += rowIncrement
     }
     return aux.join(``)
   }
 
-  withinVerticalBounds(ri) {
-    return 0 <= ri && ri < this.board.length
+  #withinVerticalBounds = (rowIndex) => {
+    return 0 <= rowIndex && rowIndex < this.board.length
   }
 
-  withinHorizontalBounds(ci) {
-    return 0 <= ci && ci < this.board[0].length
+  #withinHorizontalBounds = (colIndex) => {
+    return 0 <= colIndex && colIndex < this.board[0].length
   }
 }
 
