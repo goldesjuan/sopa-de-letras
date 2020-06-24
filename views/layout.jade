@@ -8,7 +8,7 @@ html
     script(type='text/javascript').
       var postData = {
         word: "oie",
-        stream: "3 3\nOIE\nIIX\nEXE\n\n1 10\nEIOIEIOEIO\n\n5 5\nEAEAE\nAIIIA\nEIOIE\nAIIIA\nEAEAE\n"
+        stream: "3 3\nOIE\nIIX\nEXE\n\n1 10\nEIOIEIOEIO\n\n5 5\nEAEAE\nAIIIA\nEIOIE\nAIIIA\nEAEAE\n\n7 2\nOX\nIO\nEX\nII\nOX\nIE\nEX\n\n1 1\nE\n"
       };
       $(document).ready(function(){
         $("#the-button" ).click(function() {
@@ -16,16 +16,20 @@ html
           $.ajax({
             type: "POST",
             url: "http://localhost:3000/sopadeletras/solucion",
-            // The key needs to match your method's input parameter (case-sensitive).
             data: JSON.stringify(postData),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function(data){
               var text = JSON.stringify(data.result);
               $("#result").text(text);
+              $("#result-div").show();
             },
-            failure: function(errMsg) {
-                alert(errMsg);
+            error: function (xhr, ajaxOptions, thrownError) {
+              $("#error-message").text(xhr.responseJSON.message)
+              $("#error-div").show();
+            },
+            failure: function(error) {
+              alert(errMsg);
             }
           });
         });

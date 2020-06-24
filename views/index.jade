@@ -7,6 +7,11 @@ block content
   br
   div
     p#request
-  p
-    b Result:
+  div(id='result-div',style='display:none;')
+    p
+      b Result:
       div#result
+  div(id='error-div',style='display:none;')
+    p
+      b Error:
+      div#error-message
